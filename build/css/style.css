@@ -339,12 +339,15 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding-top: 200px;
-  width: 700px;
+  width: 390px;
   margin: 0 auto;
 }
 .matrix-output__table {
   margin: 0 auto;
   padding-top: 50px;
+}
+.matrix-output__table td {
+  cursor: pointer;
 }
 .visually-hidden {
   position: absolute;

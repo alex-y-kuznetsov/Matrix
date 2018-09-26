@@ -40,7 +40,7 @@
   var createRandomMatrixHandler = function (evt) {
     evt.preventDefault();
     clearMatrix();
-    createMatrix(0, 2, getRandom(0, 40), getRandom(0, 40));
+    createMatrix(0, 2, getRandom(1, 40), getRandom(1, 40));
   };
 
   createButton.addEventListener('click', createMatrixHandler);
