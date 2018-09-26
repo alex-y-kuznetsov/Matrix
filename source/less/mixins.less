@@ -1,0 +1,14 @@
+.wrapper() {
+  &__wrapper {
+    width: 100%;
+    margin: auto;
+
+    @media (min-width: @normal-width) {
+      width: @normal-wrapper-width;
+    }
+
+    @media (min-width: @widescreen-width) {
+      width: @widescreen-wrapper-width
+    }
+  }
+}
