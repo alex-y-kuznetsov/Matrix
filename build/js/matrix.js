@@ -5,7 +5,6 @@
   var matrixM = document.querySelector('.matrix-param__m');
   var matrixN = document.querySelector('.matrix-param__n');
   var matrixRange = document.querySelector('.matrix-param__range');
-  var matrix = document.createDocumentFragment();
   var createButton = document.querySelector('.matrix-param__create');
   var createRandomButton = document.querySelector('.matrix-param__create--random');
 
@@ -14,6 +13,7 @@
   };
 
   var createMatrix = function (min, max, nValue, mValue) {
+    var matrix = document.createDocumentFragment();
     var array = [];
     for (var i = 0; i < mValue; i++) {
       var row = document.createElement('tr');
