@@ -4,6 +4,7 @@
   var matrixHome = document.querySelector('.matrix-output__table');
   var matrixM = document.querySelector('.matrix-param__m');
   var matrixN = document.querySelector('.matrix-param__n');
+  var matrixRange = document.querySelector('.matrix-param__range');
   var matrix = document.createDocumentFragment();
   var createButton = document.querySelector('.matrix-param__create');
   var createRandomButton = document.querySelector('.matrix-param__create--random');
@@ -38,9 +39,10 @@
   };
 
   var createRandomMatrixHandler = function (evt) {
+    var chanceOfOne = matrixRange.value / 100 + 1;
     evt.preventDefault();
     clearMatrix();
-    createMatrix(0, 2, getRandom(1, 40), getRandom(1, 40));
+    createMatrix(0, chanceOfOne, getRandom(1, 40), getRandom(1, 40));
   };
 
   createButton.addEventListener('click', createMatrixHandler);
