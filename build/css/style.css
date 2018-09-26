@@ -342,6 +342,10 @@ body {
   width: 700px;
   margin: 0 auto;
 }
+.matrix-output__table {
+  margin: 0 auto;
+  padding-top: 50px;
+}
 .visually-hidden {
   position: absolute;
   clip: rect(0 0 0 0);
