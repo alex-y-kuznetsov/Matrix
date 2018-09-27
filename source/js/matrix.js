@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var matrixHome = document.querySelector('.matrix-output__table');
+  window.matrixHome = document.querySelector('.matrix-output__table');
   var matrixForm = document.querySelector('.matrix-param__form');
   var matrixM = document.querySelector('.matrix-param__m');
   var matrixN = document.querySelector('.matrix-param__n');
@@ -43,6 +43,7 @@
       evt.preventDefault();
       clearMatrix();
       createMatrix(0, 0, matrixN.value, matrixM.value);
+      window.colorOnes();
     }
   };
 
@@ -51,6 +52,7 @@
     evt.preventDefault();
     clearMatrix();
     createMatrix(0, chanceOfOne, getRandom(1, 40), getRandom(1, 40));
+    window.colorOnes();
   };
 
   var matrixCellToggleHandler = function (evt) {
@@ -59,6 +61,7 @@
     } else {
       evt.target.innerHTML = 0;
     }
+    window.colorOnes();
   };
 
   createButton.addEventListener('click', createMatrixHandler);
