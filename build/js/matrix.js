@@ -14,33 +14,35 @@
   };
 
   var createMatrix = function (min, max, nValue, mValue) {
-    var matrix = document.createDocumentFragment();
-    var array = [];
-    for (var i = 0; i < mValue; i++) {
-      var row = document.createElement('tr');
-      array[i] = [];
-      for (var j = 0; j < nValue; j++) {
-        var cell = document.createElement('td');
-        cell.innerHTML = array[i][j] = getRandom(min, max);
-        cell.className = 'matrix-cell';
-        row.appendChild(cell);
+    if (matrixN.validity.valid && matrixM.validity.valid) {
+      var matrix = document.createDocumentFragment();
+      var array = [];
+      for (var i = 0; i < mValue; i++) {
+        var row = document.createElement('tr');
+        array[i] = [];
+        for (var j = 0; j < nValue; j++) {
+          var cell = document.createElement('td');
+          cell.innerHTML = array[i][j] = getRandom(min, max);
+          cell.className = 'matrix-cell';
+          row.appendChild(cell);
+        }
+        matrix.appendChild(row);
       }
-      matrix.appendChild(row);
+      matrixHome.appendChild(matrix);
+      var matrixCell = document.querySelectorAll('.matrix-cell');
+      for (var k = 0; k < matrixCell.length; k++) {
+        matrixCell[k].addEventListener('click', matrixCellToggleHandler);
+      };
     }
-    matrixHome.appendChild(matrix);
-    var matrixCell = document.querySelectorAll('.matrix-cell');
-    for (var k = 0; k < matrixCell.length; k++) {
-      matrixCell[k].addEventListener('click', matrixCellToggleHandler);
-    };
   };
 
   var clearMatrix = function () {
     matrixHome.innerHTML = '';
   };
 
-  var removeMessage = function (message) {
-    message.parentNode.removeChild(message)
-  };
+  // var removeMessage = function (message) {
+  //   message.parentNode.removeChild(message)
+  // };
 
   // var validateFields = function () {
   //   if (!matrixN.value) {

@@ -7,4 +7,24 @@
     width: 390px;
     margin: 0 auto;
   }
+  & input:invalid {
+    outline: 2px solid tomato;
+  }
+  & input:invalid + label {
+    position: relative;
+    &::after {
+      content: "Введите число от 1 до 40";
+      position: absolute;
+      width: 54px;
+      height: 36px;
+      font-size: 10px;
+      display: block;
+      background-color: tomato;
+      color: white;
+      top: 28px;
+      left: -56px;
+      border: 1px solid black;
+    }
+  }
 }
+
