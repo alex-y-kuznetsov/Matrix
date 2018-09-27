@@ -14,56 +14,36 @@
   };
 
   var createMatrix = function (min, max, nValue, mValue) {
-    if (matrixN.validity.valid && matrixM.validity.valid) {
-      var matrix = document.createDocumentFragment();
-      var array = [];
-      for (var i = 0; i < mValue; i++) {
-        var row = document.createElement('tr');
-        array[i] = [];
-        for (var j = 0; j < nValue; j++) {
-          var cell = document.createElement('td');
-          cell.innerHTML = array[i][j] = getRandom(min, max);
-          cell.className = 'matrix-cell';
-          row.appendChild(cell);
-        }
-        matrix.appendChild(row);
+    var matrix = document.createDocumentFragment();
+    var array = [];
+    for (var i = 0; i < mValue; i++) {
+      var row = document.createElement('tr');
+      array[i] = [];
+      for (var j = 0; j < nValue; j++) {
+        var cell = document.createElement('td');
+        cell.innerHTML = array[i][j] = getRandom(min, max);
+        cell.className = 'matrix-cell';
+        row.appendChild(cell);
       }
-      matrixHome.appendChild(matrix);
-      var matrixCell = document.querySelectorAll('.matrix-cell');
-      for (var k = 0; k < matrixCell.length; k++) {
-        matrixCell[k].addEventListener('click', matrixCellToggleHandler);
-      };
+      matrix.appendChild(row);
     }
+    matrixHome.appendChild(matrix);
+    var matrixCell = document.querySelectorAll('.matrix-cell');
+    for (var k = 0; k < matrixCell.length; k++) {
+      matrixCell[k].addEventListener('click', matrixCellToggleHandler);
+    };
   };
 
   var clearMatrix = function () {
     matrixHome.innerHTML = '';
   };
 
-  // var removeMessage = function (message) {
-  //   message.parentNode.removeChild(message)
-  // };
-
-  // var validateFields = function () {
-  //   if (!matrixN.value) {
-  //     matrixN.style.outline = '2px solid red';
-  //     matrixN.setCustomValidity('Введите оба значения');
-  //   } else if (!matrixM.value) {
-  //     matrixM.style.outline = '2px solid red';
-  //     matrixM.setCustomValidity('Введите оба значения');
-  //   } else {
-  //     matrixN.style.outline = 'none';
-  //     matrixM.style.outline = 'none';
-  //     matrixN.setCustomValidity('');
-  //     matrixM.setCustomValidity('');
-  //   }
-  // };
-
   var createMatrixHandler = function (evt) {
-    evt.preventDefault();
-    clearMatrix();
-    // validateFields();
-    createMatrix(0, 0, matrixN.value, matrixM.value);
+    if (matrixN.validity.valid && matrixM.validity.valid) {
+      evt.preventDefault();
+      clearMatrix();
+      createMatrix(0, 0, matrixN.value, matrixM.value);
+    }
   };
 
   var createRandomMatrixHandler = function (evt) {
@@ -81,8 +61,6 @@
     }
   };
 
-  // matrixN.addEventListener('change', validateFields);
-  // matrixM.addEventListener('change', validateFields);
   createButton.addEventListener('click', createMatrixHandler);
   createRandomButton.addEventListener('click', createRandomMatrixHandler);
 })();
