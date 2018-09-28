@@ -9,7 +9,6 @@
   };
 
   // Проверяем, есть ли у ячейки с "1" соседи с "1"
-  var neighbours = [];
   var usedColors = [];
   window.colorOnes = function () {
     usedColors = [];
@@ -22,64 +21,66 @@
           matrixCellsWithOne.push(matrixCells[a]);
           // Выбираем рандомный цвет, проверяем, нет ли в массиве использованных цветов такого цвета,
           // красим все смежные ячейки в этот цвет и пушим цвет в масси использованных цветов
-          for (var c = 0; c < matrixCellsWithOne.length; c++) {
-            var cellColor = matrixCells[a].style.backgroundColor = getRandomColor();
-            usedColors.push(cellColor);
-          }
+          // for (var c = 0; c < matrixCellsWithOne.length; c++) {
+          //   var cellColor = matrixCellsWithOne[c].style.backgroundColor = getRandomColor();
+          //   usedColors.push(cellColor);
+          //   if (matrixCellsWithOne[c].parentNode.cells[c + 1]) {
+          //     var cellRight = matrixCellsWithOne[c].parentNode.cells[c + 1];
+          //     if (cellRight.textContent.includes('1')) {
+          //       cellRight.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
+          //     }
+          //   }
+          //   if (matrixCellsWithOne[c].parentNode.parentNode.rows[c + 1]) {
+          //     var cellDown = matrixCellsWithOne[c].parentNode.parentNode.rows[c + 1].cells[c];
+          //     if (cellDown.textContent.includes('1')) {
+          //       cellDown.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
+          //     }
+          //   }
+          //   if (matrixCellsWithOne[c].parentNode.cells[c - 1]) {
+          //     var cellLeft = matrixCellsWithOne[c].parentNode.cells[c - 1];
+          //     if (cellLeft.textContent.includes('1')) {
+          //       cellLeft.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
+          //     }
+          //   }
+          //   if (matrixCellsWithOne[c].parentNode.parentNode.rows[c - 1]) {
+          //     var cellUp = matrixCellsWithOne[c].parentNode.parentNode.rows[c - 1].cells[c];
+          //     if (cellUp.textContent.includes('1')) {
+          //       cellUp.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
+          //     }
+          //   }
+          // }
         } else {
           matrixCells[a].style.backgroundColor = '#FFFFFF';
         }
       }
-      // Получаем массив соседей с единицами
-      var neighboursWithOne = [];
-      for (var b = 0; b < matrixCellsWithOne.length; b++) {
-        for (var d = 0; d < matrixCellsWithOne[b].length; d++) {
-          if (matrixCellsWithOne[b].parentNode.rows[b + 1]
-            && matrixCellsWithOne[b].parentNode.rows[b + 1].cells[d + 1]
-            && matrixCellsWithOne[b].parentNode.rows[b + 1].cells[d + 1].textContent.includes('1')) {
-              neighboursWithOne.push(matrixCellsWithOne[b].parentNode.rows[b + 1].cells[d + 1]);
-          };
-          if (matrixCellsWithOne[b].parentNode.rows[b + 1]
-            && matrixCellsWithOne[b].parentNode.rows[b + 1].cells[d]
-            && matrixCellsWithOne[b].parentNode.rows[b + 1].cells[d].textContent.includes('1')) {
-              neighboursWithOne.push(matrixCellsWithOne[b].parentNode.rows[b + 1].cells[d]);
-          };
-          if (matrixCellsWithOne[b].parentNode.rows[b]
-            && matrixCellsWithOne[b].parentNode.rows[b].cells[d - 1]
-            && matrixCellsWithOne[b].parentNode.rows[b].cells[d - 1].textContent.includes('1')) {
-              neighboursWithOne.push(matrixCellsWithOne[b].parentNode.rows[b].cells[d - 1]);
-          };
-          if (matrixCellsWithOne[b].parentNode.rows[b - 1]
-            && matrixCellsWithOne[b].parentNode.rows[b - 1].cells[d]
-            && matrixCellsWithOne[b].parentNode.rows[b - 1].cells[d].textContent.includes('1')) {
-              neighboursWithOne.push(matrixCellsWithOne[b].parentNode.rows[b - 1].cells[d]);
+      for (var c = 0; c < matrixCellsWithOne.length; c++) {
+        var cellColor = matrixCellsWithOne[c].style.backgroundColor = getRandomColor();
+        usedColors.push(cellColor);
+        if (matrixCellsWithOne[c].parentNode.cells[c + 1]) {
+          var cellRight = matrixCellsWithOne[c].parentNode.cells[c + 1];
+          if (cellRight.textContent.includes('1')) {
+            cellRight.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
+          }
+        }
+        if (matrixCellsWithOne[c].parentNode.parentNode.rows[c + 1]) {
+          var cellDown = matrixCellsWithOne[c].parentNode.parentNode.rows[c + 1].cells[c];
+          if (cellDown.textContent.includes('1')) {
+            cellDown.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
+          }
+        }
+        if (matrixCellsWithOne[c].parentNode.cells[c - 1]) {
+          var cellLeft = matrixCellsWithOne[c].parentNode.cells[c - 1];
+          if (cellLeft.textContent.includes('1')) {
+            cellLeft.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
+          }
+        }
+        if (matrixCellsWithOne[c].parentNode.parentNode.rows[c - 1]) {
+          var cellUp = matrixCellsWithOne[c].parentNode.parentNode.rows[c - 1].cells[c];
+          if (cellUp.textContent.includes('1')) {
+            cellUp.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
           }
         }
       }
-      console.log(matrixCellsWithOne);
     }
   };
-
-  // Выбираем рандомный цвет, проверяем, нет ли в массиве использованных цветов такого цвета,
-  // красим все смежные ячейки в этот цвет и пушим цвет в масси использованных цветов
-  // var usedColors = [];
-  // window.colorOnes = function () {
-  //   if (matrixHome.hasChildNodes()) {
-  //     var matrixRows = matrixHome.rows.length;
-  //     for (var i = 0; i < matrixRows; i++) {
-  //       var matrixCells = matrixHome.rows[i].cells.length;
-  //       for (var j = 0; j < matrixCells; j++) {
-  //         if (matrixHome.rows[i].cells[j].innerHTML === '1') {
-  //           var cellColor = matrixHome.rows[i].cells[j].style.backgroundColor = getRandomColor();
-  //           usedColors.push(cellColor);
-  //           if (checkNeighbours(i+1, j+1)) {
-  //             matrixHome.rows[i+1].cells[j+1].style.backgroundColor = cellColor;
-  //           }
-  //         } else {
-  //           var cellColor = matrixHome.rows[i].cells[j].style.backgroundColor = '#FFFFFF';
-  //         }
-  //       }
-  //     }
-  //   }
-  // };
 })();
