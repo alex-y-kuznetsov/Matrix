@@ -8,9 +8,26 @@
   var matrixRange = document.querySelector('.matrix-param__range');
   var createButton = document.querySelector('.matrix-param__create');
   var createRandomButton = document.querySelector('.matrix-param__create--random');
+  var buttonHolder = document.querySelector('.matrix-output__button-holder');
 
   var getRandom = function (min, max) {
     return Math.floor(Math.random()*(max-min))+min;
+  };
+
+  var createCalculateButton = function () {
+    var calculateButton = document.createElement('button');
+    calculateButton.style = 'display: block; margin: 0 auto; cursor: pointer; margin-top: 50px; margin-bottom: 50px;'
+    calculateButton.innerHTML = 'Посчитать домены';
+    buttonHolder.innerHTML = '';
+    buttonHolder.appendChild(calculateButton);
+    calculateButton.addEventListener('click', calculateButtonHandler);
+
+    var numberOfDomains = document.createElement('span');
+    numberOfDomains.innerHTML = '';
+    numberOfDomains.style = 'display: block; text-align: center; margin-bottom: 50px;';
+    buttonHolder.appendChild(numberOfDomains);
+    numberOfDomains.innerHTML = 'Количество доменов: ' + window.domains.length;
+    console.log(window.domains);
   };
 
   var createMatrix = function (min, max, nValue, mValue) {
@@ -28,6 +45,7 @@
       matrix.appendChild(row);
     }
     matrixHome.appendChild(matrix);
+    createCalculateButton();
     var matrixCell = document.querySelectorAll('.matrix-cell');
     for (var k = 0; k < matrixCell.length; k++) {
       matrixCell[k].addEventListener('click', matrixCellToggleHandler);
@@ -43,7 +61,6 @@
       evt.preventDefault();
       clearMatrix();
       createMatrix(0, 0, matrixN.value, matrixM.value);
-      window.colorOnes();
     }
   };
 
@@ -52,7 +69,6 @@
     evt.preventDefault();
     clearMatrix();
     createMatrix(0, chanceOfOne, getRandom(1, 40), getRandom(1, 40));
-    window.colorOnes();
   };
 
   var matrixCellToggleHandler = function (evt) {
@@ -61,6 +77,9 @@
     } else {
       evt.target.innerHTML = 0;
     }
+  };
+
+  var calculateButtonHandler = function () {
     window.colorOnes();
   };
 

@@ -8,10 +8,13 @@
     return '#' + r.toString(16) + g.toString(16) + b.toString(16);
   };
 
+  // Прловеряем, получился ли домен
+  window.domains = [];
+
+
   // Проверяем, есть ли у ячейки с "1" соседи с "1"
-  var usedColors = [];
   window.colorOnes = function () {
-    usedColors = [];
+    // usedColors = [];
     if (matrixHome.hasChildNodes()) {
       var matrixCells = document.querySelectorAll('.matrix-cell');
       // Получаем массив ячеек, в которых есть единицы
@@ -23,17 +26,21 @@
           // красим все смежные ячейки в этот цвет и пушим цвет в масси использованных цветов
           for (var c = 0; c < matrixCellsWithOne.length; c++) {
             var cellColor = matrixCellsWithOne[c].style.backgroundColor = getRandomColor();
-            usedColors.push(cellColor);
           }
         } else {
           matrixCells[a].style.backgroundColor = '#FFFFFF';
         }
       }
       for (var d = 0; d < matrixCellsWithOne.length; d++) {
+        // Вправо
+        var right = false;
         if (matrixCellsWithOne[d].nextSibling
           && matrixCellsWithOne[d].nextSibling.textContent.includes('1')) {
           matrixCellsWithOne[d].nextSibling.style.backgroundColor = matrixCellsWithOne[d].style.backgroundColor;
-        };
+          right = true;
+        }
+        // Вниз
+        var down = false;
         var currentRow = matrixCellsWithOne[d].parentNode.rowIndex;
         var nextRow = currentRow + 1;
         var currentCell = matrixCellsWithOne[d].cellIndex;
@@ -41,17 +48,27 @@
           && matrixCellsWithOne[d].parentNode.parentNode.rows[nextRow].cells[currentCell]
           && matrixCellsWithOne[d].parentNode.parentNode.rows[nextRow].cells[currentCell].textContent.includes('1')) {
           matrixCellsWithOne[d].parentNode.parentNode.rows[nextRow].cells[currentCell].style.backgroundColor = matrixCellsWithOne[d].style.backgroundColor;
-        };
+          down = true;
+        }
+        // Влево
+        var left = false;
         if (matrixCellsWithOne[d].previousSibling
           && matrixCellsWithOne[d].previousSibling.textContent.includes('1')) {
           matrixCellsWithOne[d].previousSibling.style.backgroundColor = matrixCellsWithOne[d].style.backgroundColor;
-        };
+          left = true;
+        }
+        // Вверх
         var previousRow = currentRow - 1;
+        var up = false;
         if (matrixCellsWithOne[d].parentNode.parentNode.rows[previousRow]
           && matrixCellsWithOne[d].parentNode.parentNode.rows[previousRow].cells[currentCell]
           && matrixCellsWithOne[d].parentNode.parentNode.rows[previousRow].cells[currentCell].textContent.includes('1')) {
           matrixCellsWithOne[d].parentNode.parentNode.rows[previousRow].cells[currentCell].style.backgroundColor = matrixCellsWithOne[d].style.backgroundColor;
-        };
+          up = true
+        }
+        if (up || down || left || right) {
+          window.domains.push(d);
+        }
       }
     }
   };
