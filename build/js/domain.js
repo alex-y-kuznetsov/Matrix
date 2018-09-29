@@ -21,65 +21,37 @@
           matrixCellsWithOne.push(matrixCells[a]);
           // Выбираем рандомный цвет, проверяем, нет ли в массиве использованных цветов такого цвета,
           // красим все смежные ячейки в этот цвет и пушим цвет в масси использованных цветов
-          // for (var c = 0; c < matrixCellsWithOne.length; c++) {
-          //   var cellColor = matrixCellsWithOne[c].style.backgroundColor = getRandomColor();
-          //   usedColors.push(cellColor);
-          //   if (matrixCellsWithOne[c].parentNode.cells[c + 1]) {
-          //     var cellRight = matrixCellsWithOne[c].parentNode.cells[c + 1];
-          //     if (cellRight.textContent.includes('1')) {
-          //       cellRight.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
-          //     }
-          //   }
-          //   if (matrixCellsWithOne[c].parentNode.parentNode.rows[c + 1]) {
-          //     var cellDown = matrixCellsWithOne[c].parentNode.parentNode.rows[c + 1].cells[c];
-          //     if (cellDown.textContent.includes('1')) {
-          //       cellDown.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
-          //     }
-          //   }
-          //   if (matrixCellsWithOne[c].parentNode.cells[c - 1]) {
-          //     var cellLeft = matrixCellsWithOne[c].parentNode.cells[c - 1];
-          //     if (cellLeft.textContent.includes('1')) {
-          //       cellLeft.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
-          //     }
-          //   }
-          //   if (matrixCellsWithOne[c].parentNode.parentNode.rows[c - 1]) {
-          //     var cellUp = matrixCellsWithOne[c].parentNode.parentNode.rows[c - 1].cells[c];
-          //     if (cellUp.textContent.includes('1')) {
-          //       cellUp.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
-          //     }
-          //   }
-          // }
+          for (var c = 0; c < matrixCellsWithOne.length; c++) {
+            var cellColor = matrixCellsWithOne[c].style.backgroundColor = getRandomColor();
+            usedColors.push(cellColor);
+          }
         } else {
           matrixCells[a].style.backgroundColor = '#FFFFFF';
         }
       }
-      for (var c = 0; c < matrixCellsWithOne.length; c++) {
-        var cellColor = matrixCellsWithOne[c].style.backgroundColor = getRandomColor();
-        usedColors.push(cellColor);
-        if (matrixCellsWithOne[c].parentNode.cells[c + 1]) {
-          var cellRight = matrixCellsWithOne[c].parentNode.cells[c + 1];
-          if (cellRight.textContent.includes('1')) {
-            cellRight.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
-          }
-        }
-        if (matrixCellsWithOne[c].parentNode.parentNode.rows[c + 1]) {
-          var cellDown = matrixCellsWithOne[c].parentNode.parentNode.rows[c + 1].cells[c];
-          if (cellDown.textContent.includes('1')) {
-            cellDown.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
-          }
-        }
-        if (matrixCellsWithOne[c].parentNode.cells[c - 1]) {
-          var cellLeft = matrixCellsWithOne[c].parentNode.cells[c - 1];
-          if (cellLeft.textContent.includes('1')) {
-            cellLeft.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
-          }
-        }
-        if (matrixCellsWithOne[c].parentNode.parentNode.rows[c - 1]) {
-          var cellUp = matrixCellsWithOne[c].parentNode.parentNode.rows[c - 1].cells[c];
-          if (cellUp.textContent.includes('1')) {
-            cellUp.style.backgroundColor = matrixCellsWithOne[c].parentNode.cells[c].style.backgroundColor;
-          }
-        }
+      for (var d = 0; d < matrixCellsWithOne.length; d++) {
+        if (matrixCellsWithOne[d].nextSibling
+          && matrixCellsWithOne[d].nextSibling.textContent.includes('1')) {
+          matrixCellsWithOne[d].nextSibling.style.backgroundColor = matrixCellsWithOne[d].style.backgroundColor;
+        };
+        var currentRow = matrixCellsWithOne[d].parentNode.rowIndex;
+        var nextRow = currentRow + 1;
+        var currentCell = matrixCellsWithOne[d].cellIndex;
+        if (matrixCellsWithOne[d].parentNode.parentNode.rows[nextRow]
+          && matrixCellsWithOne[d].parentNode.parentNode.rows[nextRow].cells[currentCell]
+          && matrixCellsWithOne[d].parentNode.parentNode.rows[nextRow].cells[currentCell].textContent.includes('1')) {
+          matrixCellsWithOne[d].parentNode.parentNode.rows[nextRow].cells[currentCell].style.backgroundColor = matrixCellsWithOne[d].style.backgroundColor;
+        };
+        if (matrixCellsWithOne[d].previousSibling
+          && matrixCellsWithOne[d].previousSibling.textContent.includes('1')) {
+          matrixCellsWithOne[d].previousSibling.style.backgroundColor = matrixCellsWithOne[d].style.backgroundColor;
+        };
+        var previousRow = currentRow - 1;
+        if (matrixCellsWithOne[d].parentNode.parentNode.rows[previousRow]
+          && matrixCellsWithOne[d].parentNode.parentNode.rows[previousRow].cells[currentCell]
+          && matrixCellsWithOne[d].parentNode.parentNode.rows[previousRow].cells[currentCell].textContent.includes('1')) {
+          matrixCellsWithOne[d].parentNode.parentNode.rows[previousRow].cells[currentCell].style.backgroundColor = matrixCellsWithOne[d].style.backgroundColor;
+        };
       }
     }
   };
