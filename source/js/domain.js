@@ -8,10 +8,7 @@
     return '#' + r.toString(16) + g.toString(16) + b.toString(16);
   };
 
-  // Прловеряем, получился ли домен
-  // window.domains = [];
   window.usedColors = [];
-
   // Проверяем, есть ли у ячейки с "1" соседи с "1"
   window.colorOnes = function () {
     if (matrixHome.hasChildNodes()) {

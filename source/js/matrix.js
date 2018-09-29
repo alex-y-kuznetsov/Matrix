@@ -68,6 +68,8 @@
     evt.preventDefault();
     clearMatrix();
     createMatrix(0, chanceOfOne, getRandom(1, 40), getRandom(1, 40));
+    window.colorOnes();
+    window.createStats();
   };
 
   var matrixCellToggleHandler = function (evt) {
@@ -75,6 +77,7 @@
       evt.target.innerHTML = 1;
     } else {
       evt.target.innerHTML = 0;
+      evt.target.style.backgroundColor = '#FFFFFF';
     }
   };
 
@@ -89,6 +92,7 @@
 
   var calculateButtonHandler = function () {
     window.colorOnes();
+    window.createStats();
     numberOfDomains.innerHTML = 'Количество доменов: ' + arrFilterUnique(window.usedColors).length;
     window.usedColors = [];
   };

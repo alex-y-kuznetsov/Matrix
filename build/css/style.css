@@ -352,6 +352,15 @@ body {
 .matrix-output__table td {
   cursor: pointer;
 }
+.matrix-stats__table {
+  margin: 0 auto;
+  font-size: 14px;
+  border: 1px solid #000000;
+}
+.matrix-stats__table th {
+  font-weight: 400;
+  width: 200px;
+}
 .visually-hidden {
   position: absolute;
   clip: rect(0 0 0 0);
