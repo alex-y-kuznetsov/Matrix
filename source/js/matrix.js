@@ -5,7 +5,7 @@
   var matrixForm = document.querySelector('.matrix-param__form');
   var matrixM = document.querySelector('.matrix-param__m');
   var matrixN = document.querySelector('.matrix-param__n');
-  var matrixRange = document.querySelector('.matrix-param__range');
+  window.matrixRange = document.querySelector('.matrix-param__range');
   var createButton = document.querySelector('.matrix-param__create');
   var createRandomButton = document.querySelector('.matrix-param__create--random');
   var buttonHolder = document.querySelector('.matrix-output__button-holder');
@@ -70,6 +70,8 @@
     createMatrix(0, chanceOfOne, getRandom(1, 40), getRandom(1, 40));
     window.colorOnes();
     window.createStats();
+    numberOfDomains.innerHTML = 'Количество доменов: ' + arrFilterUnique(window.usedColors).length;
+    window.usedColors = [];
   };
 
   var matrixCellToggleHandler = function (evt) {
@@ -81,7 +83,7 @@
     }
   };
 
-  var arrFilterUnique = function (arr) {
+  window.arrFilterUnique = function (arr) {
     var obj = {};
     for (var l = 0; l < arr.length; l++) {
       var str = arr[l];

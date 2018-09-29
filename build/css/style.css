@@ -356,10 +356,17 @@ body {
   margin: 0 auto;
   font-size: 14px;
   border: 1px solid #000000;
+  margin-bottom: 50px;
+}
+.matrix-stats__table--invisible {
+  display: none;
 }
 .matrix-stats__table th {
   font-weight: 400;
   width: 200px;
+}
+.matrix-stats__table td {
+  text-align: center;
 }
 .visually-hidden {
   position: absolute;
