@@ -22,12 +22,11 @@
     buttonHolder.appendChild(calculateButton);
     calculateButton.addEventListener('click', calculateButtonHandler);
 
-    var numberOfDomains = document.createElement('span');
+    window.numberOfDomains = document.createElement('span');
     numberOfDomains.innerHTML = '';
     numberOfDomains.style = 'display: block; text-align: center; margin-bottom: 50px;';
     buttonHolder.appendChild(numberOfDomains);
-    numberOfDomains.innerHTML = 'Количество доменов: ' + window.domains.length;
-    console.log(window.domains);
+    numberOfDomains.innerHTML = 'Количество доменов: ';
   };
 
   var createMatrix = function (min, max, nValue, mValue) {
@@ -79,8 +78,19 @@
     }
   };
 
+  var arrFilterUnique = function (arr) {
+    var obj = {};
+    for (var l = 0; l < arr.length; l++) {
+      var str = arr[l];
+      obj[str] = true;
+    }
+    return Object.keys(obj);
+  };
+
   var calculateButtonHandler = function () {
     window.colorOnes();
+    numberOfDomains.innerHTML = 'Количество доменов: ' + arrFilterUnique(window.usedColors).length;
+    window.usedColors = [];
   };
 
   createButton.addEventListener('click', createMatrixHandler);
