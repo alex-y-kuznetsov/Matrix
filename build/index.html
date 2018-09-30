@@ -13,10 +13,11 @@
         <section class="matrix-param">
           <form class="matrix-param__form" action="#" method="post">
             <input type="number" name="matrix-n" id="matrix-n" class="matrix-param__n" min="1" max="40" value="1">
-            <label for="matrix-n"></label>
-            <input type="number" name="matrix-m" class="matrix-param__m" min="1" max="40" value="1">
-            <label for="matrix-m"></label>
-            <input type="range" name="matrix-range" class="matrix-param__range" placeholder="Range" min="1" max="99">
+            <label class="matrix-param__label matrix-param__label--n" for="matrix-n"></label>
+            <input type="number" name="matrix-m" id="matrix-m" class="matrix-param__m" min="1" max="40" value="1">
+            <label class="matrix-param__label matrix-param__label--m" for="matrix-m"></label>
+            <label class="matrix-param__label matrix-param__label--range" for="matrix-range"></label>
+            <input type="range" name="matrix-range" id="matrix-range" class="matrix-param__range" placeholder="Range" min="1" max="99">
             <input type="submit" name="matrix-submit" class="matrix-param__create" value="Создать">
             <input type="button" name="matrix-random" class="matrix-param__create matrix-param__create--random" value="Авто">
           </form>
@@ -28,7 +29,7 @@
         <section class="matrix-stats">
           <table class="matrix-stats__table matrix-stats__table--invisible">
             <tr>
-              <th>Вероятность</th>
+              <th>Вероятность единицы</th>
               <th>Количество доменов в матрице</th>
               <th>Количество ячеек в матрице (N*M)</th>
             </tr>

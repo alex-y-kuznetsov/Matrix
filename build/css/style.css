@@ -345,6 +345,38 @@ body {
 .matrix-param input:invalid {
   outline: 2px solid tomato;
 }
+.matrix-param__label {
+  position: relative;
+}
+.matrix-param__label::after {
+  position: absolute;
+  width: 54px;
+  height: 15px;
+  font-size: 10px;
+  display: block;
+  top: 28px;
+  left: -54px;
+}
+.matrix-param__label--n::after {
+  content: "Введите N";
+}
+.matrix-param__label--m::after {
+  content: "Введите M";
+}
+.matrix-param__label--range::after {
+  content: "От 0.01 до 0.99";
+  left: 30px;
+  width: 75px;
+}
+.matrix-param__label--range::before {
+  content: "Вероятность единицы";
+  position: absolute;
+  display: block;
+  width: 110px;
+  font-size: 10px;
+  top: -11px;
+  left: 15px;
+}
 .matrix-output__table {
   margin: 0 auto;
   padding-top: 50px;

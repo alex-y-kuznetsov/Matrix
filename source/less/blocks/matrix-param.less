@@ -10,21 +10,43 @@
   & input:invalid {
     outline: 2px solid tomato;
   }
-  // & input:invalid + label {
-  //   position: relative;
-  //   &::after {
-  //     content: "Введите число от 1 до 40";
-  //     position: absolute;
-  //     width: 54px;
-  //     height: 36px;
-  //     font-size: 10px;
-  //     display: block;
-  //     background-color: tomato;
-  //     color: white;
-  //     top: 28px;
-  //     left: -56px;
-  //     border: 1px solid black;
-  //   }
-  // }
+  &__label {
+    position: relative;
+    &::after {
+      position: absolute;
+      width: 54px;
+      height: 15px;
+      font-size: 10px;
+      display: block;
+      top: 28px;
+      left: -54px;
+    }
+    &--n {
+      &::after {
+        content: "Введите N";
+      }
+    }
+    &--m {
+      &::after {
+        content: "Введите M";
+      }
+    }
+    &--range {
+      &::after {
+        content: "От 0.01 до 0.99";
+        left: 30px;
+        width: 75px;
+      }
+      &::before {
+        content: "Вероятность единицы";
+        position: absolute;
+        display: block;
+        width: 110px;
+        font-size: 10px;
+        top: -11px;
+        left: 15px;
+      }
+    }
+  }
 }
 
