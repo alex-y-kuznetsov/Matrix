@@ -23,6 +23,7 @@
           }
         }
       }
+      // Проходим по соседним ячейкам и красим их
       for (var d = 0; d < matrixCellsWithOne.length; d++) {
         var domainColor = matrixCellsWithOne[d].style.backgroundColor;
         // Вправо

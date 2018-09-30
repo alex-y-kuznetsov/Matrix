@@ -55,6 +55,21 @@
     matrixHome.innerHTML = '';
   };
 
+  var resetCustomValidity = function () {
+    matrixN.setCustomValidity('');
+    matrixM.setCustomValidity('');
+  };
+
+  var checkCustomValidityHandler = function () {
+    if (!matrixN.value) {
+      matrixN.setCustomValidity('Введите значение для N');
+    } else if (!matrixM.value) {
+      matrixM.setCustomValidity('Введите значение для M');
+    } else {
+      resetCustomValidity();
+    }
+  };
+
   var createMatrixHandler = function (evt) {
     if (matrixN.validity.valid && matrixM.validity.valid) {
       evt.preventDefault();
@@ -101,4 +116,6 @@
 
   createButton.addEventListener('click', createMatrixHandler);
   createRandomButton.addEventListener('click', createRandomMatrixHandler);
+  matrixN.addEventListener('change', checkCustomValidityHandler);
+  matrixM.addEventListener('change', checkCustomValidityHandler);
 })();
